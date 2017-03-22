@@ -1,22 +1,23 @@
 html {
 	font-size: 10px;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
 }
 
 h1 {
-	font-size: 60px;
+	font-size: 100px;
+	color: #FB4F4B;
 	text-align: center;
-	text-shadow: 1px 1px 10px black;
 }
 
 p, li {
+	color: #4A5455;
 	font-size: 16px;
 	line-height: 2;
 	letter-spacing: 1px;
 }
 
 body {
-	background-color: #728C8C;
+
 }
 
 img {
@@ -27,9 +28,8 @@ img {
 
 #nav {
 	text-align: center;
-	width: 90%;
 	margin: 1%;
-	background-color: #efefef;
+	background-color: #DBFAFB;
 	padding: 0.5em 0;
 }
 
@@ -43,7 +43,7 @@ li {
     margin: 4em 1em;
     width: 100px;
     height: 60px;
-    border: 2px solid green;
+    border: 2px solid #98AEAE;
     background-color: #fff;
     line-height: 60px;
     text-align: center;
