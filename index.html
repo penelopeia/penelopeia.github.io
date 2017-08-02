@@ -1,37 +1,156 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kelsi</title>
+  <script src="./two.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Ranga|Roboto+Condensed" rel="stylesheet">
+    <title>Kelsi Blauvelt</title>
     <style>
     	* {
-    		padding: 0.5px;
-    		margin: 5px;
-    		list-style: none;
-    		text-align: left;
+    		padding: 0;
+    		margin: 0;
+    		font-family: 'Ranga', cursive;
+        /*height: 100vh;*/
+        /*width: 100vw;*/
     	}
-    	.name {
-    		background-color: #dcdfe5;
-    		color: black;
+      html {
+        height: 100vh;
+        width: 100vw;
+      }
+
+    	#logo {
+    		background-color: rgba(76, 175, 80, 0.0);
+    		font-size: 10vh;
+    		font-size: 10vw;
+    		/*border-radius: 12px;*/
+        /*padding: 20%;*/
+    		display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    		/*white-space: nowrap;*/
+        z-index: 3;
     	}
+
+    	h1 {
+        text-align: center;
+        color: #6d7178;
+    	}
+
+      button {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 5vh;
+        font-size: 5vw;
+        color: #6d7178;
+        background-color: rgba(76, 175, 80, 0.0);
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        z-index: 3;
+        padding: 5%;
+      }
+
+      button:hover {
+        background-color: rgba(183, 226, 215, .25);
+        padding: 5%;
+      }
     </style>
   </head>
-  <body>
-  <div class="name">
-  	<ol>
-  		<li><h1>K</h1></li>
-  		<li><h1>Ke</h1></li>
-  		<li><h1>Kel</h1></li>
-  		<li><h1>Kels</h1></li>
-  		<li><h1>Kelsi</h1></li>
-  		<li><h1>Kelsi B</h1></li>
-  		<li><h1>Kelsi Bl</h1></li>
-  		<li><h1>Kelsi Bla</h1></li>
-  		<li><h1>Kelsi Blau</h1></li>
-  		<li><h1>Kelsi Blauv</h1></li>
-  		<li><h1>Kelsi Blauve</h1></li>
-  		<li><h1>Kelsi Blauvel</h1></li>
-  		<li><h1>Kelsi Blauvelt</h1></li>
-  	</ol>
+  <body id="body">
+    <script>
+
+      var two = new Two({
+        fullscreen: true,
+        autostart: true
+      }).appendTo(document.body);
+
+      console.log(two.width);
+
+      two.bind('update', function(frameCount) {
+        two.clear();
+
+        var bottom = [
+          new Two.Anchor(two.width, two.height, 0, 0, 0, 0, Two.Commands.line),
+          new Two.Anchor(0, two.height, 0, 0, 0, 0, Two.Commands.line)
+        ];
+
+        var top = [
+          new Two.Anchor(two.width, 0, 0, 0, 0, 0, Two.Commands.line),
+          new Two.Anchor(0, 0, 0, 0, 0, 0, Two.Commands.line)
+        ];
+
+        var bottom2 = [
+          new Two.Anchor(two.width, two.height, 0, 0, 0, 0, Two.Commands.line),
+          new Two.Anchor(0, two.height, 0, 0, 0, 0, Two.Commands.line)
+        ];
+
+        var bottom3 = [
+          new Two.Anchor(two.width, two.height, 0, 0, 0, 0, Two.Commands.line),
+          new Two.Anchor(0, two.height, 0, 0, 0, 0, Two.Commands.line)
+        ];
+
+        var bottom4 = [
+          new Two.Anchor(two.width, two.height, 0, 0, 0, 0, Two.Commands.line),
+          new Two.Anchor(0, two.height, 0, 0, 0, 0, Two.Commands.line)
+        ];
+
+        var num_points = 45 // also frequency
+
+        for(var i = 0; i <= num_points; i++){
+
+          // settings
+          var decrease_speed = 15; // higher number slows it down
+          var amplitude = 15;
+          var p2p = 5;
+
+          // create the wave location
+          y = (Math.sin(( i/p2p + frameCount/decrease_speed )) * amplitude );
+          y2 = (Math.sin(( i/6 + frameCount/decrease_speed )) * (amplitude+2) );
+          y3 = (Math.sin(( i/6 + frameCount/decrease_speed )) * (amplitude+4) );
+
+          // Starts the x from the right
+          var x = new Two.Anchor(two.width-((two.width/num_points)*i), ((two.height/2) + ((y*i*i*i/100)/num_points))+75, 0, 0, 0, 0, Two.Commands.curve);
+          var x2 = new Two.Anchor(two.width-((two.width/num_points)*i), ((two.height/2) + ((y2*i*4)/num_points))+25, 0, 0, 0, 0, Two.Commands.curve);
+          var x3 = new Two.Anchor(two.width-((two.width/num_points)*i), ((two.height/2) + ((y3*i*i/8)/num_points))-25, 0, 0, 0, 0, Two.Commands.curve);
+          var x4 = new Two.Anchor(two.width-((two.width/num_points)*i), ((two.height/2) + (y3-10)*(i)/4), 0, 0, 0, 0, Two.Commands.curve);
+
+          // add elements to the array at the beginning
+          bottom.unshift(x);
+          bottom2.unshift(x2);
+          bottom3.unshift(x3);
+          bottom4.unshift(x4);
+          top.unshift(x);
+        };
+
+        var bottom_one = new Two.Path(bottom, true, false, true);
+        var bottom_two = new Two.Path(bottom2, true, false, true);
+        var bottom_three = new Two.Path(bottom3, true, false, true);
+        var bottom_four = new Two.Path(bottom4, true, false, true);
+        var top_layer = new Two.Path(top, true, false, true);
+
+
+          bottom_one.fill = '#045640'; //'#7aadff'; // blue
+          bottom_one.noStroke();
+          bottom_one.opacity = 0.9;
+          bottom_two.fill = '#21b78f'; //'#f20a02'; // red
+          bottom_two.noStroke();
+          bottom_two.opacity = 0.9;
+          bottom_three.fill = '#64efca';//'#19e850'; // green
+          bottom_three.noStroke();
+          bottom_three.opacity = 0.9;
+          bottom_four.fill = '#b7e2d7'; //'yellow'; // green
+          bottom_four.noStroke();
+          bottom_four.opacity = 0.9;
+          top_layer.fill = '#e3e0cf'; // top white
+          top_layer.noStroke();
+          top_layer.opacity = 0.5;
+
+        two.add(bottom_four, bottom_three, bottom_two, bottom_one, top_layer);
+        }).play();
+
+    </script>
+      <div id="logo">
+        <h1>Kelsi Blauvelt</h1>
+        <button onclick="location.href = './about.html'"> about me </button>
+      </div>
   </body>
-  </div>
 </html>
